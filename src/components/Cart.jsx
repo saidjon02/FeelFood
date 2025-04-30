@@ -35,11 +35,11 @@ function Cart() {
                     <div className="cart-price-row">
                       <div className="cart-row-quantity">
                         <button onClick={() => dispatch({ type: 'DECREASE', payload: item })}>
-                          <i class="bx bx-minus"></i>
+                          <i className="bx bx-minus"></i>
                         </button>
                         <p className="quantity-item">{item.quantity}</p>
                         <button onClick={() => dispatch({ type: 'INCREASE', payload: item })}>
-                          <i class="bx bx-plus"></i>
+                          <i className="bx bx-plus"></i>
                         </button>
                       </div>
                     </div>
@@ -73,7 +73,7 @@ function Cart() {
           </div>
           <div className="oder-row2">
             <div className="input-box-cart">
-              <i class="bx bx-purchase-tag"></i>
+              <i className="bx bx-purchase-tag"></i>
               <input type="text" placeholder="Add promo code" name="" id="" className="oder-inp" />
             </div>
             <Link to={'/checkout'}>
@@ -82,7 +82,7 @@ function Cart() {
           </div>
           <Link to={'/checkout'}>
             <button className="oder-btn">
-              Go to Checkout <i class="bx bx-right-arrow-alt"></i>
+              Go to Checkout <i className="bx bx-right-arrow-alt"></i>
             </button>
           </Link>
         </div>

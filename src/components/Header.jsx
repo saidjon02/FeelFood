@@ -20,35 +20,10 @@ function Header() {
         <div className="container">
           <div className="head-row">
             <div className="head-left">
-              <i class="bx bx-menu" onClick={() => setPop(!pop)}></i>
+              <i className="bx bx-menu" onClick={() => setPop(!pop)}></i>
               <Link to="/">
                 <img src={logo} alt="Logo" />
               </Link>
-            </div>
-            <div className={pop ? 'head-center active' : 'head-center'}>
-              <i class="bx bx-x" onClick={fire}></i>
-              <ul>
-                <li>
-                  <Link to="/allclothes" className="head-link">
-                    Shop
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/allclothes" className="head-link">
-                    On Sale
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/allclothes" className="head-link">
-                    New Arrivals
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/allclothes" className="head-link">
-                    Brands
-                  </Link>
-                </li>
-              </ul>
             </div>
             <div className="head-center2">
               <i className="bx bx-search"></i>
