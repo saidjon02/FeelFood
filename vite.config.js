@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // Front-enddagi `/api/*` so‘rovlari 5000-portga yo‘naltiriladi
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://feelfood.onrender.com',
         changeOrigin: true,
         secure: false,
       },

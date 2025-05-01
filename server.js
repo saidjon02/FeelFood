@@ -1,4 +1,3 @@
-// server.js
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
@@ -7,27 +6,31 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
+// .env faylini yuklaymiz
+dotenv.config();
+
 // __dirname workaround (ESM)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
-
+// Express ilovasini ishga tushiramiz
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Middlewarelar
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Serve React build
-app.use(express.static(path.join(__dirname, 'build')));
-
 // Telegramga xabar yuborish endpointi
-app.post('/api/send-telegram', async (req, res) => {
+app.post('https://feelfood.onrender.com/api/send-telegram', async (req, res) => {
+  console.log('📥 https://feelfood.onrender.com/api/send-telegram payload:', req.body);
   const { message } = req.body;
+  if (!message) {
+    console.warn('❗ message yo‘q — 400');
+    return res.status(400).json({ error: 'message is required' });
+  }
 
   try {
     const response = await axios.post(
@@ -38,18 +41,26 @@ app.post('/api/send-telegram', async (req, res) => {
         parse_mode: 'Markdown',
       }
     );
-    res.json({ status: 'ok', telegramResponse: response.data });
+    console.log('✅ Telegram javobi:', response.data);
+    return res.status(response.status).json(response.data);
+
   } catch (err) {
-    console.error('Telegram xatosi:', err.message);
-    res.status(500).json({ error: 'Telegramga yuborishda xatolik' });
+    const telegramError = err.response?.data || err.message;
+    console.error('❌ Telegramga xato:', telegramError);
+    const status = err.response?.status || 500;
+    return res.status(status).json({ error: telegramError });
   }
 });
 
-// Barcha boshqa yo‘llar uchun React index.html
+// React build papkasini serve
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
+
+// SPA fallback
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
+// Serverni tinglash
 app.listen(PORT, () => {
-  console.log(`✅ Server https://feelfood.onrender.com da ${PORT}-portda ishlayapti`);
+  console.log(`✅ Server port ${PORT}-da ishlayapti`);
 });

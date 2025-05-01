@@ -194,6 +194,9 @@ li {
 .homebox-box.t1.aos-init{
   z-index: 2;
 }
+.margintop {
+  margin-top: 150px;
+}
 .home-box {
   width: 596px;
   display: flex;

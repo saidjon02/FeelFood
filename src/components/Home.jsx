@@ -9,7 +9,7 @@ function Home() {
   const { data: items, loading, error } = useFetch('https://feelfood-2.onrender.com/items');
   const { search } = useContext(SearchContext);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className='margintop'>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   // endi items doim array
