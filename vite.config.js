@@ -14,6 +14,6 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: resolve(__dirname, '..', 'dist') // dist ni tashqariga chiqar
+    outDir: resolve(__dirname, 'dist') // dist ni project rootga chiqar
   }
 });

@@ -5,20 +5,20 @@ import fetch from "node-fetch";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Fayl yo‘llarini aniqlaymiz
+// Fayl yo‘llarini aniqlash
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Configlar
+// Config
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middlewarelar
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// === Telegramga yuborish ===
+// === Telegram API ===
 app.post("/api/sendTelegram", async (req, res) => {
   const { name, phone } = req.body;
   const token = process.env.BOT_TOKEN;
@@ -43,7 +43,7 @@ app.post("/api/sendTelegram", async (req, res) => {
   }
 });
 
-// === React frontendni static qilib serve qilish ===
+// === Static fayllarni serve qilish ===
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("*", (req, res) => {
