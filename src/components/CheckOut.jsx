@@ -16,11 +16,9 @@ function CheckOut() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const itemsList = Array.isArray(state)
       ? state.map(item => `• ${item.name} x${item.quantity}`).join('\n')
       : '';
-
     const message = [
       '🛒 *YANGI BUYURTMA*',
       `👤 Ism: ${name}`,
@@ -35,7 +33,7 @@ function CheckOut() {
       `*Total:* $${total.toFixed(2)}`
     ].join('\n');
 
-    console.log("📤 Telegramga yuborilayotgan xabar:\n", message); // debug uchun
+    console.log('📤 Yuborilayotgan xabar:\n', message);
 
     try {
       const resp = await fetch('https://chustfeelfood.onrender.com/api/sendTelegram', {
@@ -52,7 +50,7 @@ function CheckOut() {
       }
 
       const data = await resp.json();
-      console.log('✅ Telegramdan javob:', data);
+      console.log('✅ Telegram javobi:', data);
 
       dispatch({ type: 'CLEAR' });
       setSubmitted(true);
@@ -73,16 +71,15 @@ function CheckOut() {
   return (
     <form onSubmit={handleSubmit} className="checkout container wrap">
       <h2>Yetkazib berish ma’lumotlari</h2>
-      
       <label>Ism:
         <input
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
+          placeholder="Ismingizni kiriting"
           required
         />
       </label>
-
       <label>Telefon:
         <input
           type="tel"
@@ -92,7 +89,6 @@ function CheckOut() {
           required
         />
       </label>
-
       <label>Manzil:
         <input
           type="text"
@@ -102,13 +98,11 @@ function CheckOut() {
           required
         />
       </label>
-
       <div className="order-summary">
         <p>Subtotal: ${subtotal.toFixed(2)}</p>
         <p>Delivery: ${deliveryFee}</p>
         <p><strong>Total: ${total.toFixed(2)}</strong></p>
       </div>
-
       <button type="submit">Buyurtmani Tasdiqlash</button>
     </form>
   );
