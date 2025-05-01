@@ -22,12 +22,12 @@ function Header() {
             <div className="head-left">
               <i className="bx bx-menu" onClick={() => setPop(!pop)}></i>
               <Link to="/">
-                <img src={logo} alt="Logo" />
+                <h2 className="logo">Feel Food</h2>
               </Link>
             </div>
             <div className="head-center2">
               <i className="bx bx-search"></i>
-              <Link to="/allclothes">
+              <Link to="/">
                 <input
                   type="text"
                   placeholder="Search for products..."

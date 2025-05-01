@@ -60,7 +60,7 @@ input {
 .head-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center !important;
 }
 .head-left {
 }
@@ -193,6 +193,10 @@ li {
 }
 .homebox-box.t1.aos-init{
   z-index: 2;
+}
+.logo{
+  font-size: 30px;
+  color: #ED5714;
 }
 .margintop {
   margin-top: 150px;
@@ -1112,10 +1116,6 @@ p {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   display: grid;
   grid-template-columns: 100%;
-}
-.logo {
-  margin: auto;
-  margin-bottom: 20px;
 }
 .login-inp {
   width: 300px;
