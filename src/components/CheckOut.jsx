@@ -30,7 +30,7 @@ function CheckOut() {
     ].join('\n');
 
     try {
-      const resp = await fetch('/api/sendTelegram', {
+      const resp = await fetch('https://chustfeelfood.onrender.com/api/sendTelegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
