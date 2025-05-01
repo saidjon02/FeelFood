@@ -1,17 +1,19 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      // Front-enddagi `/api/*` so‘rovlari 5000-portga yo‘naltiriladi
       '/api': {
-        target: 'https://feelfood.onrender.com',
+        target: 'https://chustfeelfood.onrender.com',
         changeOrigin: true,
         secure: false,
-      },
-    },
+      }
+    }
   },
+  build: {
+    outDir: resolve(__dirname, '..', 'dist') // dist ni tashqariga chiqar
+  }
 });

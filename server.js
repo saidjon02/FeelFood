@@ -1,66 +1,56 @@
-import path from 'path';
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import axios from 'axios';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import fetch from "node-fetch";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// .env faylini yuklaymiz
-dotenv.config();
-
-// __dirname workaround (ESM)
+// Fayl yo‘llarini aniqlaymiz
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Express ilovasini ishga tushiramiz
+// Configlar
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewarelar
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
-// Telegramga xabar yuborish endpointi
-app.post('https://feelfood.onrender.com/api/send-telegram', async (req, res) => {
-  console.log('📥 https://feelfood.onrender.com/api/send-telegram payload:', req.body);
-  const { message } = req.body;
-  if (!message) {
-    console.warn('❗ message yo‘q — 400');
-    return res.status(400).json({ error: 'message is required' });
-  }
+// === Telegramga yuborish ===
+app.post("/api/sendTelegram", async (req, res) => {
+  const { name, phone } = req.body;
+  const token = process.env.BOT_TOKEN;
+  const chatId = process.env.CHAT_ID;
+
+  const text = `🛒 Yangi buyurtma:\n👤 Ismi: ${name}\n📞 Telefon: ${phone}`;
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
   try {
-    const response = await axios.post(
-      `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
-      {
-        chat_id: process.env.CHAT_ID,
-        text: message,
-        parse_mode: 'Markdown',
-      }
-    );
-    console.log('✅ Telegram javobi:', response.data);
-    return res.status(response.status).json(response.data);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text })
+    });
 
-  } catch (err) {
-    const telegramError = err.response?.data || err.message;
-    console.error('❌ Telegramga xato:', telegramError);
-    const status = err.response?.status || 500;
-    return res.status(status).json({ error: telegramError });
+    if (!response.ok) throw new Error("Telegramga yuborilmadi");
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Xatolik:", error);
+    res.status(500).json({ success: false });
   }
 });
 
-// React build papkasini serve
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
+// === React frontendni static qilib serve qilish ===
+app.use(express.static(path.join(__dirname, "dist")));
 
-// SPA fallback
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-// Serverni tinglash
+// === Serverni ishga tushirish ===
 app.listen(PORT, () => {
-  console.log(`✅ Server port ${PORT}-da ishlayapti`);
+  console.log(`🚀 Server ${PORT}-portda ishlayapti`);
 });

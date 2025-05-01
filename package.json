@@ -1,17 +1,12 @@
 {
-  "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
+  "name": "chustfeelfood",
+  "version": "1.0.0",
   "type": "module",
-  "main": "eslint.config.js",
-  "description": "React + Vite + Express project with concurrently and dotenv support",
   "scripts": {
-    "start": "react-scripts start",
-    "server": "node server.js",
     "dev": "concurrently \"npm run server\" \"vite\"",
+    "server": "node server.js",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "serve": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +23,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.0",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.6",
+    "concurrently": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -36,7 +32,6 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",
-    "concurrently": "^7.6.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
