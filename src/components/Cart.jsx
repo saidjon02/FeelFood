@@ -17,7 +17,7 @@ function Cart() {
           {state.length === 0 ? (
             <div className="buy">
               <h2 className="cart-title-not">You haven't selected anything yet</h2>
-              <Link to={'/allclothes'}>
+              <Link to={'/'}>
                 <button className="our-product">Our products</button>
               </Link>
             </div>
@@ -30,8 +30,7 @@ function Cart() {
                   </div>
                   <div className="cart-row-right">
                     <h2 className="cart-item-name">{item.name}</h2>
-                    <p className="cart-i-text">{item.text}</p>
-                    <p className="item-price">${item.price}</p>
+                    <p className="item-price">{item.price} so'm</p>
                     <div className="cart-price-row">
                       <div className="cart-row-quantity">
                         <button onClick={() => dispatch({ type: 'DECREASE', payload: item })}>

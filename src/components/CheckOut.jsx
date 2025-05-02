@@ -7,6 +7,7 @@ function CheckOut() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // 🔄 Loading holati
 
   const subtotal = Array.isArray(state)
     ? state.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -16,6 +17,8 @@ function CheckOut() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // 🟢 Loading boshlanishi
+
     const itemsList = Array.isArray(state)
       ? state.map(item => `• ${item.name} x${item.quantity}`).join('\n')
       : '';
@@ -46,6 +49,7 @@ function CheckOut() {
         const text = await resp.text();
         console.error('❌ Server xatosi:', text);
         alert('Xatolik: server noto‘g‘ri javob berdi.');
+        setIsLoading(false); // 🔴 Xatolik bo‘lsa loadingni to‘xtat
         return;
       }
 
@@ -57,6 +61,8 @@ function CheckOut() {
     } catch (error) {
       console.error('❌ Fetch xatosi:', error);
       alert('Buyurtma yuborishda muammo bo‘ldi.');
+    } finally {
+      setIsLoading(false); // 🔚 Har doim loading tugaydi
     }
   };
 
@@ -103,7 +109,9 @@ function CheckOut() {
         <p>Delivery: ${deliveryFee}</p>
         <p><strong>Total: ${total.toFixed(2)}</strong></p>
       </div>
-      <button type="submit">Buyurtmani Tasdiqlash</button>
+      <button type="submit" className="tasdiq-btn" disabled={isLoading}>
+        {isLoading ? 'Iltimos kuting...' : 'Buyurtmani Tasdiqlash'}
+      </button>
     </form>
   );
 }

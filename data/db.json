@@ -12,8 +12,7 @@
       "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(5).png",
       "text": " These sleek and modern skinny jeans are designed to provide a perfect fit while ensuring maximum comfort. ",
       "name": "SKINNY FIT JEANS",
-      "price": 240,
-      "notprice": "$260"
+      "price": 240
     },
     {
       "id": 3,
@@ -27,16 +26,14 @@
       "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(11).png",
       "text": "This sporty t-shirt features bold sleeve stripes that add a dynamic and fashionable touch. Made from lightweight fabric, it provides excellent breathability and comfort.",
       "name": "SLEEVE STRIPED T-SHIRT",
-      "price": 130,
-      "notprice": "$160"
+      "price": 130
     },
     {
       "id": 5,
       "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(3).png",
       "text": " A refined and stylish vertical striped shirt that brings a touch of sophistication to your look. The vertical stripes create an elongating effect, making it perfect for a polished yet relaxed appearance. ",
       "name": "VERTICAL STRIPED SHIRT",
-      "price": 212,
-      "notprice": "$232"
+      "price": 212
     },
     {
       "id": 6,
@@ -64,8 +61,7 @@
       "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(1).png",
       "text": "A classic polo shirt with elegant contrast trims that enhance its sophisticated appeal. Made from premium cotton, it offers a soft and breathable feel.",
       "name": "Polo with Contrast Trims",
-      "price": 212,
-      "notprice": "$242"
+      "price": 212
     },
     {
       "id": 10,
@@ -86,8 +82,7 @@
       "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(10).png",
       "text": " A bold black t-shirt with sleek stripe detailing, offering a stylish and contemporary look. ",
       "name": "Black Striped T-shirt",
-      "price": 120,
-      "notprice": "$150"
+      "price": 120
     }
   ]
 }

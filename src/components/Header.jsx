@@ -14,15 +14,24 @@ function Header() {
   const fire = () => {
     setPop(!pop);
   };
+  const [animate, setAnimate] = useState(false);
+
+  // Karzinka soni o'zgarganda animatsiya boshlab beradi
+  React.useEffect(() => {
+    if (state.length > 0) {
+      setAnimate(true);
+      const timer = setTimeout(() => setAnimate(false), 300); // animatsiya 300ms
+      return () => clearTimeout(timer);
+    }
+  }, [state.length]);
   return (
     <>
       <header className="header">
         <div className="container">
           <div className="head-row">
             <div className="head-left">
-              <i className="bx bx-menu" onClick={() => setPop(!pop)}></i>
               <Link to="/">
-                <h2 className="logo">Feel Food</h2>
+                <img src={logo} className="logo" alt="" />
               </Link>
             </div>
             <div className="head-center2">
@@ -38,13 +47,10 @@ function Header() {
               </Link>
             </div>
             <div className="head-right">
-              <Link to="/cart">
+              <Link to="/cart" className={`${animate ? 'bump' : ''}`}>
                 <i className="bx bx-cart">
-                  <span className="cart-number">{state.length}</span>
+                  <span className="cart-number" >{state.length}</span>
                 </i>
-              </Link>
-              <Link to={'/login'}>
-                <i className="bx bxs-user" style={{ color: 'black' }}></i>
               </Link>
             </div>
           </div>
