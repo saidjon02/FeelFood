@@ -9,6 +9,7 @@ function useFetch(url, options = {}) {
     const fetchResource = async () => {
       setLoading(true);
       try {
+        // URL’ni backend API’ga o‘zgartiring:
         const response = await fetch(url, options);
         if (!response.ok) throw new Error(`HTTP xatolik: ${response.status}`);
         const json = await response.json();
@@ -21,7 +22,7 @@ function useFetch(url, options = {}) {
       }
     };
     fetchResource();
-  }, [url, JSON.stringify(options)]);
+  }, [url]); // faqat URL o‘zgarganda qayta chaqiriladi
 
   return { data, loading, error };
 }

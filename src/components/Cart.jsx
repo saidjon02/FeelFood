@@ -1,8 +1,10 @@
+// src/components/Cart.jsx
 import React, { useContext } from 'react';
 import { CartContext } from './Context';
 import ScrollToTop from './ScrollToTop';
 import { Link } from 'react-router-dom';
 import promo from '../../imgs/promo.png';
+
 function Cart() {
   const Globalstate = useContext(CartContext);
   const state = Globalstate.state;
@@ -26,7 +28,7 @@ function Cart() {
               <div className="cart" key={item.id}>
                 <div className="cart-row" key={item.id}>
                   <div className="cart-row-left">
-                    <img src={item.img} alt={item.name} />
+                    <img src={item.img_url} alt={item.name} />
                   </div>
                   <div className="cart-row-right">
                     <h2 className="cart-item-name">{item.name}</h2>
@@ -61,19 +63,23 @@ function Cart() {
           </div>
           <div className="oder-row">
             <p className="oder-text">Delivery Fee</p>
-            <p className="oder-price">$15</p>
+            <p className="oder-price">$5</p>
           </div>
           <div className="arrow2"></div>
           <div className="oder-row">
             <p className="oder-text">Total</p>
             <p className="oder-price">
-              ${state.reduce((acc, item) => acc + item.price * item.quantity, 0) + 15}
+              ${state.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5}
             </p>
           </div>
           <div className="oder-row2">
             <div className="input-box-cart">
               <i className="bx bx-purchase-tag"></i>
-              <input type="text" placeholder="Add promo code" name="" id="" className="oder-inp" />
+              <input
+                type="text"
+                placeholder="Add promo code"
+                className="oder-inp"
+              />
             </div>
             <Link to={'/checkout'}>
               <button className="oder-btn2">Apply</button>

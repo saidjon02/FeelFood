@@ -1,33 +1,50 @@
+// src/App.jsx
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './components/Home';
 import Cart from './components/Cart';
-import ScrollToTop from './components/ScrollToTop';
-import NotFound from './components/NotFound';
-import './App.css';
-import 'boxicons';
-import { SearchProvider } from './components/SearchContext';
 import CheckOut from './components/CheckOut';
+import NotFound from './components/NotFound';
+import ScrollToTop from './components/ScrollToTop';
+
+import { SearchProvider } from './components/SearchContext';
+import { CartProvider } from './components/Context';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Home from './components/Home';
+import './App.css';
+import 'boxicons';
+
 AOS.init();
+
+// Stripe public key
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 function App() {
   return (
     <BrowserRouter>
-      <SearchProvider>
-        <ScrollToTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </SearchProvider>
+      <Elements stripe={stripePromise}>
+        <SearchProvider>
+          <CartProvider>
+            <ScrollToTop />
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<CheckOut />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </CartProvider>
+        </SearchProvider>
+      </Elements>
     </BrowserRouter>
   );
 }
+
 export default App;

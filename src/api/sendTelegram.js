@@ -37,4 +37,3 @@ router.post('/sendTelegram', async (req, res) => {
 });
 
 export default router;
-

@@ -1,3 +1,4 @@
+// src/components/Context.js
 import React, { createContext, useReducer, useEffect } from 'react';
 
 export const CartContext = createContext();
@@ -6,6 +7,7 @@ const getLocalCart = () => {
   const cart = localStorage.getItem('cart');
   return cart ? JSON.parse(cart) : [];
 };
+
 const saveLocalCart = (cart) => {
   localStorage.setItem('cart', JSON.stringify(cart));
 };
@@ -17,9 +19,11 @@ const cartReducer = (state, action) => {
       const exists = state.find(i => i.id === action.payload.id);
       newState = exists
         ? state.map(i =>
-            i.id === action.payload.id ? { ...i, quantity: i.quantity + 1 } : i
+            i.id === action.payload.id
+              ? { ...i, quantity: i.quantity + 1 }
+              : i
           )
-        : [...state, action.payload];
+        : [...state, { ...action.payload, quantity: action.payload.quantity || 1 }];
       break;
     }
     case 'INCREASE':
@@ -30,7 +34,9 @@ const cartReducer = (state, action) => {
     case 'DECREASE':
       newState = state
         .map(i =>
-          i.id === action.payload.id ? { ...i, quantity: i.quantity - 1 } : i
+          i.id === action.payload.id
+            ? { ...i, quantity: i.quantity - 1 }
+            : i
         )
         .filter(i => i.quantity > 0);
       break;
@@ -50,6 +56,7 @@ const cartReducer = (state, action) => {
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, [], getLocalCart);
 
+  // Har safar state o‘zgarganda LocalStorage’ga saqlaymiz
   useEffect(() => {
     saveLocalCart(state);
   }, [state]);
