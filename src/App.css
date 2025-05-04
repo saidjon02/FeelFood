@@ -1083,6 +1083,29 @@ p {
   transition: 0.5s !important;
 }
 
+
+
+
+/* wrapper uchun hovuz */
+.StripeElement {
+  max-width: 100%;
+}
+/* ichki input elementlari */
+.StripeElement__Input {
+  width: 100% !important;
+  font-family: inherit;
+  font-size: 16px !important;
+  color: #000 !important;
+}
+/* placeholder ko‘rinishi */
+.StripeElement__Input::placeholder {
+  color: #888 !important;
+}
+
+
+
+
+
 /* checkout */
 
 .checkout {

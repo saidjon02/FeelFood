@@ -26,7 +26,6 @@ const CheckOut = () => {
     if (cartItems.length === 0) return toast.error('Savat bo‘sh');
     if (amount < 50) return toast.error('Minimum to‘lov miqdori $0.50 bo‘lishi kerak');
 
-
     setLoading(true);
 
     try {
@@ -35,7 +34,7 @@ const CheckOut = () => {
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ amount: amount}),
+          body: JSON.stringify({ amount: amount }),
         }
       );
 
@@ -120,7 +119,24 @@ const CheckOut = () => {
 
       <label>Karta raqamlaringiz:</label>
       <div className="card-element-wrapper">
-        <CardElement />
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: '16px',
+                color: '#000',
+                fontFamily: 'Arial, sans-serif',
+                '::placeholder': {
+                  color: '#888',
+                },
+              },
+              invalid: {
+                color: '#e5424d',
+                iconColor: '#e5424d',
+              },
+            },
+          }}
+        />
       </div>
 
       <button type="submit" disabled={loading || !stripe}>
