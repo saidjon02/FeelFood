@@ -1,3 +1,4 @@
+// src/components/Home.jsx
 import React, { useContext } from 'react';
 import useFetch from './useFetch';
 import ScrollToTop from './ScrollToTop';
@@ -5,8 +6,9 @@ import { SearchContext } from './SearchContext';
 import { CartContext } from './Context';
 
 function Home() {
-  const { data: items, loading, error } = useFetch('https://chustfeelfoodbackend.onrender.com/api/products/');
-  const { search } = useContext(SearchContext);
+  // 👉 Proxy orqali ishlaydi, CORS muammosi bo‘lmaydi
+  const { data: items, loading, error } = useFetch('/api/products/');
+  const { search }   = useContext(SearchContext);
   const { dispatch } = useContext(CartContext);
 
   if (loading) {
@@ -25,9 +27,11 @@ function Home() {
     return <div>Error: {error.message}</div>;
   }
 
-  const filteredItems = items ? items.filter(item =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  ) : [];
+  const filteredItems = items
+    ? items.filter(item =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
 
   return (
     <div className="allwrap">
@@ -37,12 +41,20 @@ function Home() {
         <div className="allclothes product-grid">
           {filteredItems.map(item => (
             <div className="product-card" key={item.id}>
-              <img src={item.get_image()} alt={item.name} className="product-img" />
+              <img
+                src={item.get_image ? item.get_image() : item.img_url}
+                alt={item.name}
+                className="product-img"
+              />
               <h3>{item.name}</h3>
-              <p className="price">{parseInt(item.price).toLocaleString()} so'm</p>
+              <p className="price">
+                {parseInt(item.price).toLocaleString()} so'm
+              </p>
               <button
                 className="add-to-cart"
-                onClick={() => dispatch({ type: 'ADD', payload: { ...item, quantity: 1 } })}
+                onClick={() =>
+                  dispatch({ type: 'ADD', payload: { ...item, quantity: 1 } })
+                }
               >
                 Buyurtma berish
               </button>

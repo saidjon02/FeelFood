@@ -1,15 +1,15 @@
+// src/components/useFetch.jsx
 import { useEffect, useState } from 'react';
 
 function useFetch(url, options = {}) {
-  const [data, setData] = useState(null);
+  const [data, setData]     = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError]     = useState(null);
 
   useEffect(() => {
     const fetchResource = async () => {
       setLoading(true);
       try {
-        // URL’ni backend API’ga o‘zgartiring:
         const response = await fetch(url, options);
         if (!response.ok) throw new Error(`HTTP xatolik: ${response.status}`);
         const json = await response.json();
@@ -22,7 +22,7 @@ function useFetch(url, options = {}) {
       }
     };
     fetchResource();
-  }, [url]); // faqat URL o‘zgarganda qayta chaqiriladi
+  }, [url, JSON.stringify(options)]); // agar options ham o‘zgarishi mumkin bo‘lsa
 
   return { data, loading, error };
 }

@@ -6,16 +6,18 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
+      // Home.jsx da fetch('/api/products/') deb chaqirganimizda
+      // bu proxy /api/* ni chustfeelfoodbackend.onrender.com ga yo‘naltiradi
       '/api': {
         target: 'https://chustfeelfoodbackend.onrender.com',
         changeOrigin: true,
         secure: false,
-        rewrite: path => path.replace(/^\/api/, '')
-      }
-    }
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+    },
   },
   build: {
     outDir: resolve(__dirname, 'dist'),
-    emptyOutDir: true
-  }
+    emptyOutDir: true,
+  },
 });
