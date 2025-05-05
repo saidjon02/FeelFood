@@ -4,8 +4,18 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://chustfeelfoodbackend.onrender.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
+  },
   build: {
-    outDir: resolve(__dirname, 'dist'),  // output directory for build
-    emptyOutDir: true                     // clear dist on each build
+    outDir: resolve(__dirname, 'dist'),
+    emptyOutDir: true
   }
 });

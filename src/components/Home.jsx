@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import React, { useContext } from 'react';
 import useFetch from './useFetch';
 import ScrollToTop from './ScrollToTop';
@@ -26,19 +25,19 @@ function Home() {
     return <div>Error: {error.message}</div>;
   }
 
-  const filteredItems = items.filter(item =>
+  const filteredItems = items ? items.filter(item =>
     item.name.toLowerCase().includes(search.toLowerCase())
-  );
+  ) : [];
 
   return (
     <div className="allwrap">
       <ScrollToTop />
-      <div className=" container">
+      <div className="container">
         <h1 className="page-title">Mahsulotlar</h1>
         <div className="allclothes product-grid">
           {filteredItems.map(item => (
             <div className="product-card" key={item.id}>
-              <img src={item.img_url} alt={item.name} className="product-img" />
+              <img src={item.get_image()} alt={item.name} className="product-img" />
               <h3>{item.name}</h3>
               <p className="price">{parseInt(item.price).toLocaleString()} so'm</p>
               <button
