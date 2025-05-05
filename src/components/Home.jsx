@@ -7,8 +7,12 @@ import { CartContext } from './Context';
 
 function Home() {
   // 👉 Proxy orqali ishlaydi, CORS muammosi bo‘lmaydi
-  const { data: items, loading, error } = useFetch('/api/products/');
-  const { search }   = useContext(SearchContext);
+  const {
+    data: items,
+    loading,
+    error,
+  } = useFetch('https://chustfeelfoodbackend.onrender.com/api/products/');
+  const { search } = useContext(SearchContext);
   const { dispatch } = useContext(CartContext);
 
   if (loading) {
@@ -28,36 +32,31 @@ function Home() {
   }
 
   const filteredItems = items
-    ? items.filter(item =>
-        item.name.toLowerCase().includes(search.toLowerCase())
-      )
+    ? items.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
     : [];
 
   return (
     <div className="allwrap">
       <ScrollToTop />
       <div className="container">
-        <h1 className="page-title">Mahsulotlar</h1>
         <div className="allclothes product-grid">
-          {filteredItems.map(item => (
-            <div className="product-card" key={item.id}>
+          {filteredItems.map((item) => (
+            <div className="arriv-card" key={item.id}>
               <img
                 src={item.get_image ? item.get_image() : item.img_url}
                 alt={item.name}
-                className="product-img"
+                className="arriv-img"
               />
-              <h3>{item.name}</h3>
-              <p className="price">
-                {parseInt(item.price).toLocaleString()} so'm
-              </p>
-              <button
-                className="add-to-cart"
-                onClick={() =>
-                  dispatch({ type: 'ADD', payload: { ...item, quantity: 1 } })
-                }
-              >
-                Buyurtma berish
-              </button>
+              <h3 className="arriv-card-title">{item.name}</h3>
+              <div className="price-box">
+                <p className="price">{parseInt(item.price).toLocaleString()} so'm</p>
+                <button
+                  className="add-to-cart"
+                  onClick={() => dispatch({ type: 'ADD', payload: { ...item, quantity: 1 } })}
+                >
+                  Buyurtma berish
+                </button>
+              </div>
             </div>
           ))}
         </div>

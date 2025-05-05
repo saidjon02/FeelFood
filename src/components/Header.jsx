@@ -39,7 +39,7 @@ function Header() {
               <Link to="/">
                 <input
                   type="text"
-                  placeholder="Search for products..."
+                  placeholder="Qidirish..."
                   className="head-input"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}

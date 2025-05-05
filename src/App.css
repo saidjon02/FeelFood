@@ -276,6 +276,9 @@ li {
   box-shadow: 4px 4px 10px #e8e8e8;
   border-radius: 7px;
 }
+.cart-row-left img{
+  border-radius: 10px;
+}
 .arriv-card-title {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -307,8 +310,7 @@ li {
   gap: 0px;
   justify-content: space-between;
   border-radius: 200px 200px 200px 200px;
-  padding: 0 15px 0 0;
-  border: 1px solid #ed5714;
+  /* border: 1px solid #ed5714; */
   width: 91%;
   align-items: center;
 }
@@ -1083,7 +1085,10 @@ p {
   transition: 0.5s !important;
 }
 
-
+.arriv-img{
+  width: 100%;
+  border-radius: 10px;
+}
 
 
 /* wrapper uchun hovuz */
