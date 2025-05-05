@@ -26,22 +26,19 @@ function Cart() {
     setLoading(true);
 
     try {
-      const orderRes = await fetch(
-        'https://chustfeelfoodbackend.onrender.com/api/orders/',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            phone,
-            address,
-            items: cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
-            subtotal,
-            delivery_fee: delivery,
-            total,
-          }),
-        }
-      );
+      const orderRes = await fetch('https://chustfeelfoodbackend.onrender.com/api/orders/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          phone,
+          address,
+          items: cartItems.map((item) => ({ name: item.name, quantity: item.quantity })),
+          subtotal,
+          delivery_fee: delivery,
+          total,
+        }),
+      });
       if (!orderRes.ok) throw new Error('Buyurtma yuborishda xatolik');
 
       dispatch({ type: 'CLEAR' });
@@ -68,7 +65,7 @@ function Cart() {
               </Link>
             </div>
           ) : (
-            cartItems.map(item => (
+            cartItems.map((item) => (
               <div className="cart" key={item.id}>
                 <div className="cart-row">
                   <div className="cart-row-left">
@@ -76,7 +73,7 @@ function Cart() {
                   </div>
                   <div className="cart-row-right">
                     <h2 className="cart-item-name">{item.name}</h2>
-                    <p className="item-price">{item.price.toLocaleString()} UZS</p>
+                    <p className="item-price">{item.price.toLocaleString()} <span className="cart-uzs">UZS</span></p>
                     <div className="cart-price-row">
                       <div className="cart-row-quantity">
                         <button onClick={() => dispatch({ type: 'DECREASE', payload: item })}>
@@ -101,55 +98,52 @@ function Cart() {
           <h2 className="order-title">Buyurtma xulosasi</h2>
           <div className="order-row">
             <p className="order-text">O'rtacha summa</p>
-            <p className="order-price">{subtotal.toLocaleString()} UZS</p>
+            <p className="order-price">{subtotal.toLocaleString()} <span className="cart-uzs">UZS</span></p>
           </div>
           <div className="order-row">
             <p className="order-text">Yetkazib berish</p>
-            <p className="order-price">{delivery.toLocaleString()} UZS</p>
+            <p className="order-price">{delivery.toLocaleString()} <span className="cart-uzs">UZS</span></p>
           </div>
           <div className="arrow2" />
 
-          <form onSubmit={handleSubmit} className="checkout container wrap">
-            <h2>Yetkazib berish ma'lumotlari</h2>
-
+          <form onSubmit={handleSubmit}>
+            <h2 className="yetkaz">Yetkazib berish ma'lumotlari</h2>
             <input
               type="text"
               placeholder="Ismingiz"
               value={name}
-              onChange={e => setName(e.target.value)}
+              className="inputs"
+              onChange={(e) => setName(e.target.value)}
               required
             />
             <input
               type="tel"
+              className="inputs"
               placeholder="Telefon raqamingiz"
               value={phone}
-              onChange={e => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
               required
             />
             <textarea
-              placeholder="To‘liq yetkazib berish manzili"
+              placeholder="Yetkazib berish manzili"
               value={address}
-              onChange={e => setAddress(e.target.value)}
+              className="inputs"
+              onChange={(e) => setAddress(e.target.value)}
               required
             />
 
             <div className="order-summary">
-              <p>Subtotal: {subtotal.toLocaleString()} UZS</p>
-              <p>Delivery: {delivery.toLocaleString()} UZS</p>
               <p>
-                <strong>Total: {total.toLocaleString()} UZS</strong>
+                <strong className="order-row order-text total">
+                  Jami summa <span className="order-price">{total.toLocaleString()} <span className="cart-uzs">UZS</span></span>
+                </strong>
               </p>
             </div>
 
-            <button type="submit" disabled={loading}>
+            <button type="submit" className='checkout-btn' disabled={loading}>
               {loading ? 'Buyurtma yuborilmoqda...' : 'Buyurtma berish'}
             </button>
           </form>
-
-          <div className="order-row">
-            <p className="order-text">Jami summa</p>
-            <p className="order-price">{total.toLocaleString()} UZS</p>
-          </div>
         </div>
       </div>
     </div>

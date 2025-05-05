@@ -1,4 +1,5 @@
 // src/components/Home.jsx
+
 import React, { useContext } from 'react';
 import useFetch from './useFetch';
 import ScrollToTop from './ScrollToTop';
@@ -6,12 +7,9 @@ import { SearchContext } from './SearchContext';
 import { CartContext } from './Context';
 
 function Home() {
-  // 👉 Proxy orqali ishlaydi, CORS muammosi bo‘lmaydi
-  const {
-    data: items,
-    loading,
-    error,
-  } = useFetch('https://chustfeelfoodbackend.onrender.com/api/products/');
+  const { data: items, loading, error } = useFetch(
+    'https://chustfeelfoodbackend.onrender.com/api/products/'
+  );
   const { search } = useContext(SearchContext);
   const { dispatch } = useContext(CartContext);
 
@@ -31,19 +29,19 @@ function Home() {
     return <div>Error: {error.message}</div>;
   }
 
-  const filteredItems = items
-    ? items.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
-    : [];
+  const filteredItems = items.filter(item =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="allwrap">
       <ScrollToTop />
       <div className="container">
         <div className="allclothes product-grid">
-          {filteredItems.map((item) => (
+          {filteredItems.map(item => (
             <div className="arriv-card" key={item.id}>
               <img
-                src={item.get_image ? item.get_image() : item.img_url}
+                src={item.get_image || '/default.png'}
                 alt={item.name}
                 className="arriv-img"
               />
@@ -52,7 +50,9 @@ function Home() {
                 <p className="price">{parseInt(item.price).toLocaleString()} so'm</p>
                 <button
                   className="add-to-cart"
-                  onClick={() => dispatch({ type: 'ADD', payload: { ...item, quantity: 1 } })}
+                  onClick={() =>
+                    dispatch({ type: 'ADD', payload: { ...item, quantity: 1 } })
+                  }
                 >
                   Buyurtma berish
                 </button>
