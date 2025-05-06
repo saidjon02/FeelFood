@@ -6,10 +6,38 @@ import { SearchContext } from './SearchContext';
 import { CartContext } from './Context';
 
 const CATEGORY_OPTIONS = [
-  { key: 'all', label: 'Hammasi' },
-  { key: 'food', label: '🍔 Ovqatlar' },
-  { key: 'drink', label: '🥤 Ichimliklar' },
-  { key: 'cake', label: '🍰 Tortlar' },
+  {
+    key: 'all',
+    label: (
+      <>
+        <span style={{ fontSize: '24px' }}>🧾</span> <span>Hammasi</span>
+      </>
+    ),
+  },
+  {
+    key: 'food',
+    label: (
+      <>
+        <span style={{ fontSize: '24px' }}>🍔</span> <span>Taomlar</span>
+      </>
+    ),
+  },
+  {
+    key: 'drink',
+    label: (
+      <>
+        <span style={{ fontSize: '24px' }}>🥤</span> <span>Ichimliklar</span>
+      </>
+    ),
+  },
+  {
+    key: 'cake',
+    label: (
+      <>
+        <span style={{ fontSize: '24px' }}>🍰</span> <span>Desertlar</span>
+      </>
+    ),
+  },
 ];
 
 function Home() {
