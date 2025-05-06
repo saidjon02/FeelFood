@@ -1919,7 +1919,7 @@ p {
     left: 20px;
     right: 20px;
   }
-  
+
   .arriv-card-title {
     margin-top: 11px;
     margin-bottom: 14px;
@@ -2187,7 +2187,8 @@ p {
     width: inherit;
   }
   .add-to-cart {
-    font-size: 12px;
+    font-size: 14px;
+    padding: 6px 7px;
   }
   .head-row {
     display: grid;
