@@ -47,7 +47,7 @@ function Home() {
               />
               <h3 className="arriv-card-title">{item.name}</h3>
               <div className="price-box">
-                <p className="price">{parseInt(item.price).toLocaleString()} so'm</p>
+                <p className="price">{parseInt(item.price).toLocaleString()} UZS</p>
                 <button
                   className="add-to-cart"
                   onClick={() =>

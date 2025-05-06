@@ -69,7 +69,7 @@ function Cart() {
               <div className="cart" key={item.id}>
                 <div className="cart-row">
                   <div className="cart-row-left">
-                    <img src={item.img_url} alt={item.name} />
+                    <img src={item.get_image} alt={item.name} />
                   </div>
                   <div className="cart-row-right">
                     <h2 className="cart-item-name">{item.name}</h2>

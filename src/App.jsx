@@ -19,7 +19,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
 import 'boxicons';
-import ProductList from './components/asdf';
+import Success from './components/Success';
 
 AOS.init();
 
@@ -38,7 +38,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<CheckOut />} />
-              <Route path="/asdf" element={<ProductList />} />
+              <Route path="/success" element={<Success />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

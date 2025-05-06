@@ -1460,12 +1460,17 @@ p {
   .allclothes {
     margin-bottom: 50px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
     gap: 20px;
   }
   .dress.container {
     margin: 0px 20px;
     padding: 46px 53px !important;
+  }
+  .price{
+    display: flex;
+    justify-content: start;
+    margin: inherit;
   }
   .view-all-btn {
     margin: auto;
@@ -1678,12 +1683,67 @@ p {
     color: rgb(0, 0, 0);
     font-size: 25px;
   }
+  .allclothes .price-box {
+    grid-template-columns: 100%;
+    width: 100%;
+    justify-content: left;
+    max-width: 91%;
+  }
+  .allwrap {
+    margin-top: 112px;
+  }
+  .price,
+  .notprice {
+    font-size: 17px;
+    text-align-last: left !important;
+    margin: inherit !important;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: start;
+  }
+  .add-to-cart {
+    width: 100%;
+  }
+  .add-to-cart {
+    margin-top: 10px;
+    padding: 7px 10px;
+  }
+  .arriv-card {
+    position: relative;
+    padding-bottom: 78px;
+  }
 }
 @media only screen and (max-width: 768px) {
   .home-row {
     display: grid;
     grid-template-columns: 100%;
     gap: 25px;
+  }
+  .allclothes .price-box {
+    grid-template-columns: 100%;
+    width: 100%;
+    justify-content: left;
+    max-width: 91%;
+  }
+  .price,
+  .notprice {
+    font-size: 17px;
+    text-align-last: left !important;
+    margin: inherit !important;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: start;
+  }
+  .add-to-cart {
+    width: 100%;
+  }
+  .add-to-cart {
+    margin-top: 10px;
+    padding: 7px 10px;
+  }
+  .arriv-card {
+    position: relative;
+    padding-bottom: 78px;
   }
   .home {
     padding-top: 117px;
@@ -1708,7 +1768,7 @@ p {
     margin-top: 11px;
     margin-bottom: 7px;
     color: rgb(0, 0, 0);
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 25px;
   }
@@ -1827,6 +1887,9 @@ p {
     font-size: 16px;
     font-weight: 700;
     line-height: 22px;
+  }
+  .allwrap {
+    margin-top: 150px;
   }
   .margintop {
     padding-top: 100px;
@@ -2083,10 +2146,27 @@ p {
     width: 100% !important;
     width: inherit;
   }
+  .add-to-cart{
+    font-size: 12px;
+  }
   .head-row {
     display: grid;
     grid-template-columns: 20% 58%;
     justify-content: space-between;
+  }
+  .allclothes .price-box {
+    grid-template-columns: auto auto;
+    width: 100%;
+    max-width: 90%;
+    justify-content: space-between;
+  }
+  .price,
+  .notprice {
+    font-size: 15px;
+  }
+  .arriv-card {
+    position: relative;
+    padding-bottom: 48px;
   }
 }
 @media only screen and (max-width: 484px) {
@@ -2131,7 +2211,36 @@ p {
     padding: 7px 17px;
     background: rgb(240, 240, 240);
   }
+  .allclothes .price-box {
+    grid-template-columns: 100%;
+    width: 100%;
+    justify-content: left;
+    max-width: 91%;
+  }
+  .price,
+  .notprice {
+    font-size: 17px;
+    text-align-last: left !important;
+    margin: inherit !important;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: start;
+  }
+  .arriv-card-title{
+    font-size: 18px;
+  }
+  .add-to-cart {
+    width: 100%;
+  }
+  .add-to-cart {
+    margin-top: 10px;
+    padding: 7px 10px;
+  }
+  .arriv-card {
+    position: relative;
+    padding-bottom: 78px;
+  }
 }
-.cart-uzs{
+.cart-uzs {
   color: #ff915e;
 }
