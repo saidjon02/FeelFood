@@ -14,7 +14,7 @@ const CATEGORY_OPTIONS = [
 ];
 
 function Home() {
-  
+
   const { data: items, loading, error } = useFetch(
     'https://chustfeelfoodbackend.onrender.com/api/products/'
   );
@@ -67,9 +67,6 @@ function Home() {
                 className="arriv-img"
               />
               <h3 className="arriv-card-title">{item.name}</h3>
-              <p className="category-label">
-                {CATEGORY_OPTIONS.find(o => o.key === item.category)?.label}
-              </p>
               <div className="price-box">
                 <p className="price">{parseInt(item.price).toLocaleString()} UZS</p>
                 <button
