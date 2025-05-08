@@ -1514,6 +1514,9 @@ p {
   width: auto;
   padding-right: 15px;
 }
+.head-center2 > a{
+  width: 100%;
+}
 .head-right a i {
   color: #ed5714 !important;
 }
