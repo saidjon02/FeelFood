@@ -114,7 +114,7 @@ li {
   display: flex;
   border: 1.5px solid #ed5714;
   align-items: center;
-  padding: 9px 13px;
+  padding: 0px 13px;
   gap: 12px;
 }
 .bx-search {
@@ -1516,6 +1516,13 @@ p {
 }
 .head-center2 > a{
   width: 100%;
+}
+.head-center2 input{
+  padding: 9px 0;
+  width: 100%;
+}
+.filter-buttons{
+  padding: 0px 15px;
 }
 .head-right a i {
   color: #ed5714 !important;
