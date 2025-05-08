@@ -1911,6 +1911,9 @@ p {
     margin: auto;
     width: 100%;
   }
+  .gif {
+    width: 20%;
+}
 }
 @media only screen and (max-width: 576px) {
   .head-center2 {
@@ -1919,7 +1922,9 @@ p {
     left: 20px;
     right: 20px;
   }
-
+  .gif {
+    width: 40%;
+}
   .arriv-card-title {
     margin-top: 11px;
     margin-bottom: 14px;
