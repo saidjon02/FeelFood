@@ -5,14 +5,15 @@ import { toast } from 'react-toastify';
 import { CartContext } from '../components/Context';
 
 const CheckOut = () => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const navigate = useNavigate();
+  const { state: cartItems, dispatch } = useContext(CartContext);
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  const [error, setError] = useState(null);
-  const stripe = useStripe();
-  const elements = useElements();
-  const { state: cartItems, dispatch } = useContext(CartContext);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const delivery = 5;
@@ -24,6 +25,8 @@ const CheckOut = () => {
     if (!stripe || !elements) return toast.error('Stripe yuklanmadi');
     if (cartItems.length === 0) return toast.error('Savat bo‘sh');
     if (amount < 50) return toast.error('Minimum to‘lov miqdori $0.50 bo‘lishi kerak');
+
+    setLoading(true);
 
     try {
       const res = await fetch(
@@ -75,9 +78,10 @@ const CheckOut = () => {
       toast.success('To‘lov va buyurtma muvaffaqiyatli!');
       navigate('/success');
     } catch (err) {
-      setError(err.message);
       toast.error('Xatolik: ' + err.message);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -135,8 +139,8 @@ const CheckOut = () => {
         />
       </div>
 
-      <button type="submit" disabled={!stripe}>
-        To'lov qilish - ${total}
+      <button type="submit" disabled={loading || !stripe}>
+        {loading ? 'To‘lov amalga oshirilmoqda...' : `To‘lov qilish - $${total}`}
       </button>
     </form>
   );

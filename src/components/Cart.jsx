@@ -13,7 +13,7 @@ function Cart() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const delivery = 10000;
@@ -21,6 +21,10 @@ function Cart() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (cartItems.length === 0) return toast.error('Savatcha bo‘sh');
+
+    setLoading(true);
+
     try {
       const orderRes = await fetch('https://chustfeelfoodbackend.onrender.com/api/orders/', {
         method: 'POST',
@@ -41,9 +45,10 @@ function Cart() {
       toast.success('Buyurtma muvaffaqiyatli yuborildi!');
       navigate('/success');
     } catch (err) {
-      setError(err.message);
       toast.error('Xatolik: ' + err.message);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -135,8 +140,8 @@ function Cart() {
               </p>
             </div>
 
-            <button type="submit" className='checkout-btn'>
-              Buyurtma berish
+            <button type="submit" className='checkout-btn' disabled={loading}>
+              {loading ? 'Buyurtma yuborilmoqda...' : 'Buyurtma berish'}
             </button>
           </form>
         </div>
