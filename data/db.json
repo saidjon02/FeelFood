@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "img": "https://www.southernliving.com/thmb/H04pCVJ5bLAnwPs2hFCmpNs5Uec=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ultimate-southern-burger_batch64_beauty01-86-b9c26e256dd34e39b6c0cfb0c02a9fef.jpg",
+      "text": "This modern t-shirt features stylish tape details on the sleeves, adding a trendy touch to your casual wardrobe. ",
+      "name": "T-SHIRT WITH TAPE DETAILS",
+      "price": 120
+    },
+    {
+      "id": 2,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(5).png",
+      "text": " These sleek and modern skinny jeans are designed to provide a perfect fit while ensuring maximum comfort. ",
+      "name": "SKINNY FIT JEANS",
+      "price": 240
+    },
+    {
+      "id": 3,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(8).png",
+      "text": "A classic checkered shirt that never goes out of style. Crafted from premium cotton, it offers a soft and breathable feel.",
+      "name": "CHECKERED SHIRT",
+      "price": 180
+    },
+    {
+      "id": 4,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(11).png",
+      "text": "This sporty t-shirt features bold sleeve stripes that add a dynamic and fashionable touch. Made from lightweight fabric, it provides excellent breathability and comfort.",
+      "name": "SLEEVE STRIPED T-SHIRT",
+      "price": 130
+    },
+    {
+      "id": 5,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(3).png",
+      "text": " A refined and stylish vertical striped shirt that brings a touch of sophistication to your look. The vertical stripes create an elongating effect, making it perfect for a polished yet relaxed appearance. ",
+      "name": "VERTICAL STRIPED SHIRT",
+      "price": 212
+    },
+    {
+      "id": 6,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(6).png",
+      "text": "This graphic t-shirt is perfect for any occasion. Crafted from soft and breathable fabric, it offers superior comfort and style.",
+      "name": "COURAGE GRAPHIC T-SHIRT",
+      "price": 145
+    },
+    {
+      "id": 7,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(9).png",
+      "text": "hese relaxed-fit Bermuda shorts are designed for maximum comfort. Made from lightweight and breathable fabric, they are ideal for warm weather.",
+      "name": "LOOSE FIT BERMUDA SHORTS",
+      "price": 80
+    },
+    {
+      "id": 8,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(12).png",
+      "text": "These modern skinny jeans feature a stylish faded design that adds a rugged yet fashionable touch. ",
+      "name": "FADED SKINNY JEANS",
+      "price": 210
+    },
+    {
+      "id": 9,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(1).png",
+      "text": "A classic polo shirt with elegant contrast trims that enhance its sophisticated appeal. Made from premium cotton, it offers a soft and breathable feel.",
+      "name": "Polo with Contrast Trims",
+      "price": 212
+    },
+    {
+      "id": 10,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(4).png",
+      "text": "This stylish t-shirt features a unique gradient graphic that adds a modern twist to your casual wear. Made from soft and lightweight fabric, it ensures a comfortable fit throughout the day. ",
+      "name": "Gradient Graphic T-shirt",
+      "price": 145
+    },
+    {
+      "id": 11,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(7).png",
+      "text": " A sleek polo shirt featuring fine tipping details on the collar and sleeves for a refined touch. Made from breathable fabric, it keeps you comfortable all day.",
+      "name": "Polo with Tipping Details",
+      "price": 180
+    },
+    {
+      "id": 12,
+      "img": "https://img-folder.netlify.app/src/assets/imgs3/frame%20(10).png",
+      "text": " A bold black t-shirt with sleek stripe detailing, offering a stylish and contemporary look. ",
+      "name": "Black Striped T-shirt",
+      "price": 120
+    }
+  ]
+}
