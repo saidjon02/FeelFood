@@ -13,7 +13,6 @@ const CheckOut = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const delivery = 5;
@@ -23,10 +22,8 @@ const CheckOut = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return toast.error('Stripe yuklanmadi');
-    if (cartItems.length === 0) return toast.error('Savat bo‘sh');
-    if (amount < 50) return toast.error('Minimum to‘lov miqdori $0.50 bo‘lishi kerak');
-
-    setLoading(true);
+    if (cartItems.length === 0) return toast.error('Savat bosh');
+    if (amount < 50) return toast.error('Minimum tolov miqdori $0.50 bolishi kerak');
 
     try {
       const res = await fetch(
@@ -51,7 +48,7 @@ const CheckOut = () => {
       if (result.error) throw new Error(result.error.message);
       if (result.paymentIntent.status !== 'succeeded') {
         throw new Error(
-          'To‘lov muvaffaqiyatsiz yoki yarimta qoldi: ' + result.paymentIntent.status
+          'Tolov muvaffaqiyatsiz yoki yarimta qoldi: ' + result.paymentIntent.status
         );
       }
 
@@ -75,18 +72,16 @@ const CheckOut = () => {
       if (!telegramRes.ok) throw new Error('Telegramga yuborishda xatolik');
 
       dispatch({ type: 'CLEAR' });
-      toast.success('To‘lov va buyurtma muvaffaqiyatli!');
+      toast.success('Tolov va buyurtma muvaffaqiyatli!');
       navigate('/success');
     } catch (err) {
       toast.error('Xatolik: ' + err.message);
     }
-
-    setLoading(false);
   };
 
   return (
     <form onSubmit={handleSubmit} className="checkout container wrap">
-      <h2>To‘lov ma’lumotlari</h2>
+      <h2>Tolov malumotlari</h2>
 
       <input
         type="text"
@@ -139,8 +134,8 @@ const CheckOut = () => {
         />
       </div>
 
-      <button type="submit" disabled={loading || !stripe}>
-        {loading ? 'To‘lov amalga oshirilmoqda...' : `To‘lov qilish - $${total}`}
+      <button type="submit" disabled={!stripe}>
+        Tolov qilish - ${total}
       </button>
     </form>
   );
